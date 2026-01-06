@@ -98,18 +98,7 @@ if uploaded_file is not None:
     TARGET_COLUMN = possible_targets[0]
     target_unit = UNIT_MAP.get("power", "units")
 
-    # ---------------- TARGET VARIABLE SLICER ----------------
-    st.subheader("Observed Power Generation Level")
-    st.write(f"Detected Target Column: **{TARGET_COLUMN} ({target_unit})**")
-
-    st.slider(
-        f"Power Generation ({target_unit})",
-        min_value=float(df[TARGET_COLUMN].min()),
-        max_value=float(df[TARGET_COLUMN].max()),
-        value=float(df[TARGET_COLUMN].mean())
-    )
-
-    # ---------------- INPUT FEATURES (AFTER REMOVAL) ----------------
+    # ---------------- INPUT FEATURES ----------------
     X = df.drop(columns=[TARGET_COLUMN], errors="ignore")
 
     X = X.drop(
